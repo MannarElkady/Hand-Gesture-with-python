@@ -55,13 +55,15 @@ if __name__ == "__main__":
     screen_res_height=768
     # get the reference to the webcam
     camera = cv2.VideoCapture(0)
-    camera.set(10,200)
-    # region of interest (ROI) coordinates
-    box_length=350
-    top, right = int((0.5*screen_res_height) - (box_length*0.5)) , int((0.5*screen_res_width) - (box_length*0.5))
-    print(top,right)
-    bottom, left = top + box_length, right + box_length
-    print(bottom,left)
+
+    box_length=300
+    screen_res_new_width=1000
+    screen_res_new_height=int((screen_res_height*screen_res_new_width)/screen_res_width)
+
+    top = int(screen_res_new_height/2 - box_length/2)
+    right= int(screen_res_new_width/2 - box_length/2)
+    bottom=top +box_length
+    left =right + box_length
     # initialize num of frames
     num_frames = 0
 
